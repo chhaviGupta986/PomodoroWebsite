@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "pomodorowebsite-5a017",
+  "private_key_id": "15ffb4b4c8af41d74e072a89673d7f4e60ed176f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDZJ7hZY2Gs2LyY\nD+z2OF2X2bvt0Iuyz9r+gFWpiSjZM6RXdz74y8raM4ORpOv8cQROK/iaDeld0sDt\ncyuYqki9kuzLLwiU2iWyKFyVYIZbtrY6CrsrQvs7dfHZobFVyv252u2RFBomewRe\nr2GyQ5ClwOO7quhdoOBM/SvyEWV6/kTMvdCMOYtvvrXalAHU0JvrbYS0PnwSSuKq\nGOk+RyavHh6ujM1gWdNk018mj0q2uMuHVMQuqcWyUjgENj2wkHLhm6tRBv8+xNYV\nI9ho4UUPWHPbIcopswltfGNjPNtgJxCgX991lRIGC/q58pFxsyqECNLHwePfx5YF\nPFzs054jAgMBAAECggEAaADaDhXHBh2X1cxq1VIRoVSq6S9kePOMEzAr1tLWOZC+\nORXnlwkj0nWxoeO3EmSeh0IQAth+2GzD8fWi/68uv3zK5FVWatRAEZ+7F9/u+aX8\niLfzBLlD0iqe9ni2kjxyYL014rIaBCwO37pntBUgBgLoD02/lHgkdTsb/QfP7qNO\n5ZWAWW1NLsgw4wDh6DnxmkD0vaZk/UUOkI0vealVgAKvMAS3FQeOu2X/0q2raIiq\n0vnaMvc0P6FJgJBtFL6okriV4XI2W8GEHUJDW4nEP3Zxfi/pmM6G7VsAhE4qglg0\ncmk3SXatMeVzUCX7k/dhbtVY37yK8R9vew6de6k/4QKBgQD5Pk+D1I74nT1SD1hP\n5L6MeiQ/cAl7RhCMMsY8O25u5sW4zYArPRdidsAVkO7//w1YtV+dzjd4SuRFPsPu\nvSDqM1aDkpwZSZInURL9Lr2rMzLhp/s0vC9iEft1VPCdP2EicnV94mTrpCR1LxRi\nVATb459A5QUDk03oYPKyclJ5XQKBgQDfCrmMHU8be7btq1ADKY4dPad/JxS3beU5\nKB00eZ+qXPp67p8nnuH5Xy0yezBG4erG3MAouBAcWN3fLouLwJwWY0p30ao5EUnI\nDzZFXuWmYKSqiDjz5p0BNGeIgNGNwkWptofw3rqmQ3owYYXXNg84r23pRsBP/U9s\n5UHt/dN9fwKBgAlIidumKiEWcjdBPQ/UvEgtMHZwbNn7lRgzt/B8YjOdQtYMSW7S\n2rEfLS5gdJZyYIPiVYpiKOzBFVmC6fdVcglnGhzSdB/4/omaWnO1rvjWclm3UQL4\n02b6tnv7Su8AclS/IKMssIeaWIVI2KCE8p1iEAdxwEsOzIMQQVnmKi49AoGBANAD\nT5LWTs3h7nPv/ppEai7pLkpO52o/CrXorHwhJgCb4FtAKpyn+DY7Roq7CwZAclZu\n0KPpLdVSJ/KalTiMNMZIac4fczLv5bC4RzQhUep+XXRRwVPu8uSJvDk5crZTxeaG\nvnetMcQYUF/IxCs3VrDWI5qZCohPRYDYu0k7Hb//AoGBAIECQ5P0Ahi7qjMOA5G+\n49xJfhwEOITE2+l7GOgMAdYEdDRcFVmt/YSXSjmDhOLkyaxclPGWwyHVZPjiGvq1\n0Funind1nuXI5EUWU9IlfDeySIqBhNsWRGMPwEhBPUWrw3JZZoRJ81Rto9RHJNWq\nUSU2y+voGW+/OVF47bIp90bg\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-gn6gw@pomodorowebsite-5a017.iam.gserviceaccount.com",
+  "client_id": "105339157140899402478",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-gn6gw%40pomodorowebsite-5a017.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
