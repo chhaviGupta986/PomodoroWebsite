@@ -1,9 +1,7 @@
 package com.Spring_IA_2.PomodoroWebsite.services;
 
-import com.Spring_IA_2.PomodoroWebsite.classes.Music.Music;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.io.ClassPathResource;

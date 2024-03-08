@@ -16,7 +16,7 @@ public class SongsCRUDService {
 
     public Music CreateSongs(Music music) throws ExecutionException, InterruptedException {
         Firestore db = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult>apiFuture = db.collection("Songs").document(music.getTitle()).set(music);
+        ApiFuture<WriteResult>apiFuture = db.collection("Songs").document(music.getUrl()).set(music);
 
         return music;
 

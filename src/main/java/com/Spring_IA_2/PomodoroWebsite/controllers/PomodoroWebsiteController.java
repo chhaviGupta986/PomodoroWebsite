@@ -54,13 +54,22 @@ public class PomodoroWebsiteController {
         return new ResponseEntity<>(null, HttpStatus.valueOf(400));
     }
 
-//    @RequestMapping(path ="/uploadSongs",method =RequestMethod.POST )
-//    public ResponseEntity<String> uploadSongs(@RequestBody MusicForm file) throws IOException, ExecutionException, InterruptedException {
-//        String FileName = songUploadService.saveTest(file.getFile());
-//        file.setUrl(FileName);
-//        songsCRUDService.CreateSongs(new Music(file.getTitle(),file.getArtist(),file.getUrl(),file.getCredits()));
-//        return new ResponseEntity<>("Uploaded Successfully",HttpStatus.valueOf(200));
-//    }
+    @RequestMapping(path ="/uploadSongs",method =RequestMethod.POST )
+    public ResponseEntity<String> uploadSongs(@ModelAttribute("MusicForm")MusicForm file) throws IOException, ExecutionException, InterruptedException {
+        if(file.getFile().isEmpty()){
+            return new ResponseEntity<>("Empty Files not allowed :'(",HttpStatus.valueOf(401));
+        }
+        System.out.println(file.getFile().getContentType());
+        if(!file.getFile().getContentType().equals("audio/mpeg")){
+            return new ResponseEntity<>("Only mp3 files are allowed :'(",HttpStatus.valueOf(402));
+        }
+
+        String FileName = songUploadService.saveTest(file.getFile());
+        System.out.println(FileName);
+        file.setUrl(FileName);
+        songsCRUDService.CreateSongs(new Music(file.getTitle(),file.getArtist(),file.getCredits(),file.getUrl()));
+        return new ResponseEntity<>("Uploaded Successfully",HttpStatus.valueOf(200));
+    }
 
     @RequestMapping(path="/getSongs",method = RequestMethod.GET)
     public String getSongs() throws IOException {
