@@ -28,7 +28,7 @@ public class RunnerImpl implements CommandLineRunner{
         ClassLoader classLoader = RunnerImpl.class.getClassLoader();
         File Credentials = new File(Objects.requireNonNull(classLoader.getResource("PomodoroWebsite.json")).getFile());
         FileInputStream serviceAccount = new FileInputStream(Credentials.getAbsolutePath());
-        FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(serviceAccount)).setDatabaseUrl(config.getUrl()).build();
+        FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(serviceAccount)).setDatabaseUrl(config.getUrl()).setStorageBucket("pomodorowebsite-5a017.appspot.com").build();
         FirebaseApp.initializeApp(options);
     }
 
