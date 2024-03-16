@@ -1,0 +1,38 @@
+.SideBar
+{
+    height: 100vh;
+    width: 10%;
+    border: 2px solid red;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    flex-direction: column;
+    gap:10%
+}
+
+.Icon
+{
+    font-size: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 20%;
+    padding: 20px;
+    transition: all;
+    transition-duration: 1.5s;
+    
+}
+.name{
+    font-size: 20px;
+    color: wheat;
+}
+
+.Icon:hover
+{
+    background-color: white;
+}
+

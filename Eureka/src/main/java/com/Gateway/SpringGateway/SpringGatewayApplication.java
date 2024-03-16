@@ -1,5 +1,6 @@
 package com.Gateway.SpringGateway;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
@@ -8,7 +9,14 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 @EnableEurekaServer
 public class SpringGatewayApplication {
 
-	public static void main(String[] args) {
+	private spriing spriing = new spriing();
+
+	private void access(){
+		this.spriing.getName();
+	}
+	public static void main(String[] args)
+	{
+
 		SpringApplication.run(SpringGatewayApplication.class, args);
 	}
 
