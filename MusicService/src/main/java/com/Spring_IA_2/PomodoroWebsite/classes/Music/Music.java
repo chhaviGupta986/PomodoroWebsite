@@ -13,5 +13,4 @@ public class Music {
     private String credits;
     private String url;
 
-
 }

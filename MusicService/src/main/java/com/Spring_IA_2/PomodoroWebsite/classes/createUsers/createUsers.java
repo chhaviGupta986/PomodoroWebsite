@@ -2,12 +2,22 @@ package com.Spring_IA_2.PomodoroWebsite.classes.createUsers;
 
 public class createUsers {
 
-    private String name;
+    private String username;
     private String email;
     private String password;
 
-    public String getName() {
-        return name;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -18,8 +28,8 @@ public class createUsers {
         this.password = password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

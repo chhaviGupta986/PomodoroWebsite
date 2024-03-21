@@ -1,57 +1,37 @@
 package com.Spring_IA_2.PomodoroWebsite.controllers;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import com.Spring_IA_2.PomodoroWebsite.classes.Music.Music;
 import com.Spring_IA_2.PomodoroWebsite.classes.Music.MusicForm;
-import com.Spring_IA_2.PomodoroWebsite.classes.UsersLogin.UserLogin;
-import com.Spring_IA_2.PomodoroWebsite.classes.createUsers.createUsers;
 import com.Spring_IA_2.PomodoroWebsite.services.SongUploadService;
 import com.Spring_IA_2.PomodoroWebsite.services.SongsCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.Spring_IA_2.PomodoroWebsite.classes.Users.Users;
 import com.Spring_IA_2.PomodoroWebsite.services.UsersService;
 
 @RestController
-@RequestMapping(path = "/auth")
-public class PomodoroWebsiteController {
+@RequestMapping(path = "/api")
+public class Api {
     UsersService usersService;
     SongUploadService songUploadService;
     SongsCRUDService songsCRUDService;
 
     @Autowired
-    public PomodoroWebsiteController(UsersService usersService,SongUploadService songUploadService,SongsCRUDService songsCRUDService){
+    public Api(UsersService usersService, SongUploadService songUploadService, SongsCRUDService songsCRUDService){
             this.usersService = usersService;
             this.songUploadService = songUploadService;
             this.songsCRUDService = songsCRUDService;
-    }
-
-    @RequestMapping(path = "/createUser",method = RequestMethod.POST)
-    public ResponseEntity<String> createUsers(@RequestBody createUsers user) throws ExecutionException, InterruptedException {
-        Users res = usersService.createUsers(user);
-        if(res == null){
-            return new ResponseEntity<>("Error user already exists :'D ", HttpStatus.valueOf(400));
-        }
-        return new ResponseEntity<>("User created successfully :D", HttpStatus.valueOf(200));
-    }
-    @RequestMapping(path = "/login",method = RequestMethod.POST)
-    public ResponseEntity<Users> getUsers(@RequestBody UserLogin user) throws ExecutionException, InterruptedException {
-
-         Users user_db =  usersService.getUser(user);
-         if (user_db != null){
-             return new ResponseEntity<>(user_db, HttpStatus.valueOf(200));
-         }
-        return new ResponseEntity<>(null, HttpStatus.valueOf(400));
     }
 
     @RequestMapping(path ="/uploadSongs",method =RequestMethod.POST )
@@ -71,8 +51,14 @@ public class PomodoroWebsiteController {
         return new ResponseEntity<>("Uploaded Successfully",HttpStatus.valueOf(200));
     }
 
-    @RequestMapping(path="/getSongs",method = RequestMethod.GET)
-    public String getSongs() throws IOException {
+    @RequestMapping(path = "/getSongsList",method = RequestMethod.GET)
+    public ResponseEntity<ArrayList<Music>> getSongs() throws ExecutionException, InterruptedException {
+       ArrayList<Music> music = songsCRUDService.getSongs();
+       return new ResponseEntity<>(music, HttpStatus.OK);
+    }
+    @RequestMapping(path="/downloadSong",method = RequestMethod.GET)
+
+    public String downloadSong() throws IOException {
 
         String songUrl = "https://firebasestorage.googleapis.com/v0/b/pomodorowebsite-5a017.appspot.com/o/Songs%2FGhostrifterOfficial%2FHope-Emotional-Soundtrack(chosic.com).mp3?alt=media&token=142b98b6-dae3-490b-8a67-db564f747c57";
 

@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public class UserLogin implements Serializable {
 
-    private String name;
+    private String password;
     private String email;
 
-    public UserLogin(String name, String email) {
-        this.name = name;
+    public UserLogin(String password, String email) {
+        this.password = password;
         this.email = email;
     }
 
@@ -16,11 +16,11 @@ public class UserLogin implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 
