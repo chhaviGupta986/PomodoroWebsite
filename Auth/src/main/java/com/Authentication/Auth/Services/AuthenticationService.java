@@ -2,7 +2,7 @@ package com.Authentication.Auth.Services;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class AuthenticationService {
     private final UserInfoService userRepository;
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder;
     private final JWTService jwtService;
     private final AuthenticationManager authenticationManager;
 
@@ -24,11 +24,12 @@ public class AuthenticationService {
 
 
     public AuthenticationService(UserInfoService userRepository,
-                                 JWTService jwtService,
+                                 PasswordEncoder passwordEncoder, JWTService jwtService,
                                  AuthenticationManager authenticationManager,
                                  TokenRepository tokenRepository)
     {
         this.userRepository = userRepository ;
+        this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
         this.tokenRepository = tokenRepository;
@@ -83,19 +84,17 @@ public class AuthenticationService {
                         request.getPassword()
                 ));
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
-                        request.getPassword()
-                )
-        );
-
         UserInfo user = userRepository.fetchUser(request.getEmail());
-        String jwt = jwtService.getJWTToken(user);
-        revokeAllTokenByUser(user);
-        saveUserToken(jwt, user);
+        if(user != null) {
+            String jwt = jwtService.getJWTToken(user);
+            revokeAllTokenByUser(user);
+            saveUserToken(jwt, user);
+            return new AuthenticationResponse(jwt, "User login was successful :D");
+        }
 
-        return new AuthenticationResponse(jwt, "User login was successful :D");
+        return new AuthenticationResponse(null, "User login was unsuccessful :'D");
+
+
 
     }
 

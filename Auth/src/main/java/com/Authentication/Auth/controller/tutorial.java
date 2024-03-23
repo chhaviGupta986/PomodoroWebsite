@@ -30,6 +30,7 @@ public class tutorial {
     public ResponseEntity<AuthenticationResponse> login(
             @RequestBody UserInfo request
     ) {
+        System.out.println(request.getPassword());
         return ResponseEntity.ok(authService.authenticate(request));
     }
 }

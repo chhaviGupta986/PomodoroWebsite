@@ -1,7 +1,6 @@
 package com.Authentication.Auth.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,11 +16,12 @@ import com.Authentication.Auth.classes.usersResponse;
 @RequestMapping(value = "/auth")
 public class User {
     private final UserInfoService userInfoService;
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder;
     private final JWTService jwtService;
 
-    public User(UserInfoService userInfoService, JWTService jwtService) {
+    public User(UserInfoService userInfoService, PasswordEncoder passwordEncoder, JWTService jwtService) {
         this.userInfoService = userInfoService;
+        this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
     }
 
