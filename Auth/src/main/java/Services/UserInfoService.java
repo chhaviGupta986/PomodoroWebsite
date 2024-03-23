@@ -48,7 +48,7 @@ public class UserInfoService implements UserInfoInterface{
     }
 
     @Override
-    public List<Roles> fetchRoles(String username) {
-        return userRepository.findAllByUsername(username);
+    public List<Roles> fetchRoles(String email) {
+        return userRepository.findAllByEmail(email);
     }
 }

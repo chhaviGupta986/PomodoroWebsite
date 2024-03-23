@@ -1,11 +1,13 @@
 package controller;
 import Entities.UserInfo;
+import Services.JWTService;
 import Services.UserInfoService;
 //import classes.users;
 import classes.usersResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -15,9 +17,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/auth")
 public class User {
     private final UserInfoService userInfoService;
-    @Autowired
-    User(UserInfoService userInfoService){
+    private final PasswordEncoder passwordEncoder;
+
+    public User(UserInfoService userInfoService, JWTService jwtService, PasswordEncoder passwordEncoder) {
         this.userInfoService = userInfoService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping(value ="/createUser",method = RequestMethod.POST)
@@ -29,7 +33,7 @@ public class User {
             UserInfo userInfo_db = new UserInfo();
             userInfo_db.setUsername(info.getUsername());
             userInfo_db.setEmail(info.getEmail());
-            userInfo_db.setPassword(info.getPassword());
+            userInfo_db.setPassword(passwordEncoder.encode(info.getPassword()));
             userInfo_db.setMobileNumber(info.getMobileNumber());
             userInfo_db.setRoles(info.getRoles());
             userInfoService.saveUser(userInfo_db);
@@ -42,5 +46,8 @@ public class User {
         return new ResponseEntity<>(null, HttpStatus.valueOf(400));
 
     }
+
+
+
 
 }

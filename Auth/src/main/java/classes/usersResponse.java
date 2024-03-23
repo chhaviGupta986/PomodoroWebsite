@@ -2,7 +2,6 @@ package classes;
 
 import Entities.Roles;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class usersResponse {
@@ -12,8 +11,6 @@ public class usersResponse {
         return username;
     }
 
-    public usersResponse() {
-    }
 
     public usersResponse(String username, String email, String mobileNumber,List<Roles> roles) {
         this.username = username;
