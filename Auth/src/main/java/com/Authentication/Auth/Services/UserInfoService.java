@@ -1,5 +1,4 @@
 package com.Authentication.Auth.Services;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,7 @@ public class UserInfoService implements UserInfoInterface{
 
     @Override
     public UserInfo saveUser(UserInfo userInfo) {
-        return userRepository.save(userInfo);
+          return userRepository.save(userInfo);
     }
 
     @Override
