@@ -1,8 +1,9 @@
-package repositories;
+package com.Authentication.Auth.repositories;
 
-import Entities.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.Authentication.Auth.Entities.Token;
 
 import java.util.List;
 import java.util.Optional;

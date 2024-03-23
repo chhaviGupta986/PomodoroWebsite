@@ -1,10 +1,11 @@
-package Services;
+package com.Authentication.Auth.Services;
 
-import Entities.Roles;
-import Entities.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.UserRepository;
+
+import com.Authentication.Auth.Entities.Roles;
+import com.Authentication.Auth.Entities.UserInfo;
+import com.Authentication.Auth.repositories.UserRepository;
 
 import java.util.List;
 import java.util.Optional;

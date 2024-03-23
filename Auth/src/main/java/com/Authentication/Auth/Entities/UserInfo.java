@@ -1,4 +1,4 @@
-package Entities;
+package com.Authentication.Auth.Entities;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,12 +1,13 @@
-package controller;
+package com.Authentication.Auth.controller;
 
-import Entities.UserInfo;
-import Services.AuthenticationService;
-import classes.AuthenticationResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.Authentication.Auth.Entities.UserInfo;
+import com.Authentication.Auth.Services.AuthenticationService;
+import com.Authentication.Auth.classes.AuthenticationResponse;
 
 @RestController
 public class tutorial {

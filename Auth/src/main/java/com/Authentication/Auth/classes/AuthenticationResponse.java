@@ -1,4 +1,4 @@
-package classes;
+package com.Authentication.Auth.classes;
 
 public class AuthenticationResponse {
     private String token;

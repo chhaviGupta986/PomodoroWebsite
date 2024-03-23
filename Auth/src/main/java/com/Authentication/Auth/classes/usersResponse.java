@@ -1,8 +1,8 @@
-package classes;
-
-import Entities.Roles;
+package com.Authentication.Auth.classes;
 
 import java.util.List;
+
+import com.Authentication.Auth.Entities.Roles;
 
 public class usersResponse {
     private String username;

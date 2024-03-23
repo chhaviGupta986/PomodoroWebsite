@@ -15,21 +15,17 @@ import com.Spring_IA_2.PomodoroWebsite.services.SongsCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.Spring_IA_2.PomodoroWebsite.services.UsersService;
 
 @RestController
 @RequestMapping(path = "/api")
 public class Api {
-    UsersService usersService;
     SongUploadService songUploadService;
     SongsCRUDService songsCRUDService;
 
     @Autowired
-    public Api(UsersService usersService, SongUploadService songUploadService, SongsCRUDService songsCRUDService){
-            this.usersService = usersService;
+    public Api(SongUploadService songUploadService, SongsCRUDService songsCRUDService){
             this.songUploadService = songUploadService;
             this.songsCRUDService = songsCRUDService;
     }

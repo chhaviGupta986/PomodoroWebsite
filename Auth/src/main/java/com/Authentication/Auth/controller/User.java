@@ -1,14 +1,14 @@
-package controller;
-import Entities.UserInfo;
-import Services.JWTService;
-import Services.UserInfoService;
-//import classes.users;
-import classes.usersResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+package com.Authentication.Auth.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import com.Authentication.Auth.Entities.UserInfo;
+import com.Authentication.Auth.Services.JWTService;
+import com.Authentication.Auth.Services.UserInfoService;
+import com.Authentication.Auth.classes.usersResponse;
 
 /**
  * Status Code: 400 -> User Exists error
@@ -17,11 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/auth")
 public class User {
     private final UserInfoService userInfoService;
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final JWTService jwtService;
 
-    public User(UserInfoService userInfoService, JWTService jwtService, PasswordEncoder passwordEncoder) {
+    public User(UserInfoService userInfoService, JWTService jwtService) {
         this.userInfoService = userInfoService;
-        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     @RequestMapping(value ="/createUser",method = RequestMethod.POST)

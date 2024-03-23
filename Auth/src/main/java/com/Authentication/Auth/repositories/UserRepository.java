@@ -1,10 +1,11 @@
-package repositories;
+package com.Authentication.Auth.repositories;
 
-import Entities.Roles;
-import Entities.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import com.Authentication.Auth.Entities.Roles;
+import com.Authentication.Auth.Entities.UserInfo;
 
 import java.util.List;
 import java.util.Optional;

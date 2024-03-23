@@ -1,7 +1,6 @@
-package Config;
+package com.Authentication.Auth.Config;
 
-import classes.UserDetailService;
-import filter.JWTFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,13 +13,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.Authentication.Auth.classes.UserDetailService;
+import com.Authentication.Auth.filter.JWTFilter;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityFilterChain {
     private final UserDetailService userDetailService;
     private final JWTFilter jwtFilter;
 
-
+    @Autowired
     SecurityFilterChain(UserDetailService userDetailService,
                         JWTFilter jwtFilter){
         this.userDetailService = userDetailService;
@@ -28,7 +30,7 @@ public class SecurityFilterChain {
     }
 
     @Bean
-    org.springframework.security.web.SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    org.springframework.security.web.SecurityFilterChain securityFilterChains(HttpSecurity httpSecurity) throws Exception{
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(

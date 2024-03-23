@@ -1,21 +1,22 @@
-package Services;
+package com.Authentication.Auth.Services;
 
-import Entities.Token;
-import Entities.UserInfo;
-import classes.AuthenticationResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import repositories.TokenRepository;
 
+import com.Authentication.Auth.Entities.Token;
+import com.Authentication.Auth.Entities.UserInfo;
+import com.Authentication.Auth.classes.AuthenticationResponse;
+import com.Authentication.Auth.repositories.TokenRepository;
 
 import java.util.List;
 
 @Service
 public class AuthenticationService {
     private final UserInfoService userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private final JWTService jwtService;
     private final AuthenticationManager authenticationManager;
 
@@ -23,13 +24,11 @@ public class AuthenticationService {
 
 
     public AuthenticationService(UserInfoService userRepository,
-                                 PasswordEncoder passwordEncoder,
                                  JWTService jwtService,
                                  AuthenticationManager authenticationManager,
                                  TokenRepository tokenRepository)
     {
         this.userRepository = userRepository ;
-        this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
         this.tokenRepository = tokenRepository;

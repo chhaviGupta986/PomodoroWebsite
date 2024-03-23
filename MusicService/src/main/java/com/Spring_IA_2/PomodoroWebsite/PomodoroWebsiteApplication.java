@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 //@EnableDiscoveryClient
-@ComponentScan(basePackageClasses = {com.Spring_IA_2.PomodoroWebsite.classes.runner.RunnerImpl.class, Api.class,com.Spring_IA_2.PomodoroWebsite.services.UsersService.class,com.Spring_IA_2.PomodoroWebsite.configuration.Config.class,com.Spring_IA_2.PomodoroWebsite.Config.SecurityConfig.class})
+@ComponentScan(basePackageClasses = {com.Spring_IA_2.PomodoroWebsite.classes.runner.RunnerImpl.class, Api.class,com.Spring_IA_2.PomodoroWebsite.configuration.Config.class,com.Spring_IA_2.PomodoroWebsite.services.SongUploadService.class})
 public class PomodoroWebsiteApplication {
 
 	public static void main(String[] args) {

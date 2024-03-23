@@ -1,9 +1,9 @@
-package Services;
-
-import Entities.Roles;
-import Entities.UserInfo;
+package com.Authentication.Auth.Services;
 
 import java.util.List;
+
+import com.Authentication.Auth.Entities.Roles;
+import com.Authentication.Auth.Entities.UserInfo;
 
 public interface UserInfoInterface {
     UserInfo saveUser(UserInfo userInfo);

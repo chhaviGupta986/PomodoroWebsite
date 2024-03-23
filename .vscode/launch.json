@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "PomodoroWebsiteApplication",
+            "request": "launch",
+            "mainClass": "com.Spring_IA_2.PomodoroWebsite.PomodoroWebsiteApplication",
+            "projectName": "PomodoroWebsite"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AuthApplication<Auth>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.Authentication.Auth.AuthApplication",
+            "projectName": "Auth",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=41229 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=Auth"
+        }
+    ]
+}
