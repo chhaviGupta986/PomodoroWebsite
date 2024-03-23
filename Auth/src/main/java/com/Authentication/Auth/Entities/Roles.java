@@ -1,17 +1,13 @@
 package com.Authentication.Auth.Entities;
-
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "roles")
 public class Roles {
 
-    @Id
-    private long role_id;
-
+   @Id
     public String getRole_name() {
         return role_name;
     }

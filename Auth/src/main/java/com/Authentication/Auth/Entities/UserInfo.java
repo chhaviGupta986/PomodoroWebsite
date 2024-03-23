@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -32,7 +31,7 @@ public class UserInfo implements UserDetails {
 
     @Column(name = "roles")
     @ManyToMany(targetEntity = Roles.class,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role",joinColumns = @JoinColumn(name ="users_id" ,referencedColumnName ="email" ),inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "role_id"))
+    @JoinTable(name = "user_role",joinColumns = @JoinColumn(name ="users_id" ,referencedColumnName ="email" ),inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "role_name"))
     private List<Roles> roles;
     public String getUsername() {
         return username;

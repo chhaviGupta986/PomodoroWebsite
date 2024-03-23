@@ -59,6 +59,8 @@ public class AuthenticationService {
             UserInfo userInfo1 = userRepository.saveUser(userInfo);
             String token = jwtService.getJWTToken(userInfo1);
 
+            saveUserToken(token, userInfo1);
+
             return new AuthenticationResponse(token, "User registration was successful :D");
 
         }
