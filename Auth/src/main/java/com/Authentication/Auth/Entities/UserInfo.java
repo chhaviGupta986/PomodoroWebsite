@@ -30,7 +30,7 @@ public class UserInfo implements UserDetails {
     private String email;
 
     @Column(name = "roles")
-    @ManyToMany(targetEntity = Roles.class,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = Roles.class,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",joinColumns = @JoinColumn(name ="users_id" ,referencedColumnName ="email" ),inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "role_name"))
     private List<Roles> roles;
     public String getUsername() {
@@ -39,22 +39,22 @@ public class UserInfo implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public void setUsername(String username) {
@@ -63,6 +63,7 @@ public class UserInfo implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        System.out.println(roles);
         String [] role = new String[roles.size()];
         int index  =0;
         for (Roles roles1: roles){

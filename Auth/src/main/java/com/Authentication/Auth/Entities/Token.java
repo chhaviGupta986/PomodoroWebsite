@@ -24,7 +24,7 @@ public class Token {
         this.userInfo = userInfo;
     }
 
-    @ManyToOne(targetEntity =UserInfo.class ,fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity =UserInfo.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     public UserInfo userInfo;
 

@@ -15,38 +15,12 @@ import com.Authentication.Auth.classes.usersResponse;
 @RestController
 @RequestMapping(value = "/auth")
 public class User {
-    private final UserInfoService userInfoService;
-    private final PasswordEncoder passwordEncoder;
-    private final JWTService jwtService;
 
-    public User(UserInfoService userInfoService, PasswordEncoder passwordEncoder, JWTService jwtService) {
-        this.userInfoService = userInfoService;
-        this.passwordEncoder = passwordEncoder;
-        this.jwtService = jwtService;
+    @GetMapping(value = "/profile")
+    public String getProfile(){
+        return "Hi";
     }
 
-    @RequestMapping(value ="/createUser",method = RequestMethod.POST)
-    public ResponseEntity<usersResponse>createUsers(@ModelAttribute("UserInfo") UserInfo info){
-
-        UserInfo userInfo = userInfoService.fetchUser(info.getEmail());
-        if(userInfo == null){
-
-            UserInfo userInfo_db = new UserInfo();
-            userInfo_db.setUsername(info.getUsername());
-            userInfo_db.setEmail(info.getEmail());
-            userInfo_db.setPassword(passwordEncoder.encode(info.getPassword()));
-            userInfo_db.setMobileNumber(info.getMobileNumber());
-            userInfo_db.setRoles(info.getRoles());
-            userInfoService.saveUser(userInfo_db);
-
-            UserInfo userInfo1 = userInfoService.saveUser(userInfo_db);
-            usersResponse usersResponse = new usersResponse(userInfo1.getUsername(),userInfo1.getEmail(),userInfo1.getMobileNumber(),userInfo1.getRoles());
-            return new ResponseEntity<>(usersResponse, HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>(null, HttpStatus.valueOf(400));
-
-    }
 
 
 

@@ -78,11 +78,12 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(UserInfo request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                ));
+
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    ));
 
         UserInfo user = userRepository.fetchUser(request.getEmail());
         if(user != null) {

@@ -19,7 +19,7 @@ public class Roles {
     @Column(name = "role_name")
     private String role_name;
 
-    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<UserInfo> userInfos;
 
     public  String toString(){
