@@ -17,6 +17,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 
 @RestController
 @RequestMapping(path = "/api")
@@ -52,11 +55,11 @@ public class Api {
        ArrayList<Music> music = songsCRUDService.getSongs();
        return new ResponseEntity<>(music, HttpStatus.OK);
     }
-    @RequestMapping(path="/downloadSong",method = RequestMethod.GET)
+    @RequestMapping(path="/downloadSong/{songName}",method = RequestMethod.GET)
 
-    public String downloadSong() throws IOException {
+    public ResponseEntity<String> downloadSong(@PathVariable("songName") String songName) throws IOException {
 
-        String songUrl = "https://firebasestorage.googleapis.com/v0/b/pomodorowebsite-5a017.appspot.com/o/Songs%2FGhostrifterOfficial%2FHope-Emotional-Soundtrack(chosic.com).mp3?alt=media&token=142b98b6-dae3-490b-8a67-db564f747c57";
+        String songUrl = "https://firebasestorage.googleapis.com/v0/b/pomodorowebsite-5a017.appspot.com/o/"+songName+"?alt=media&token="+songName;
 
         try {
             URL url = new URL(songUrl);
@@ -70,7 +73,7 @@ public class Api {
                 // Get the input stream containing the binary data
                 try (InputStream inputStream = connection.getInputStream()) {
                     // Save the binary data to a file (you might need to handle file naming appropriately)
-                    try (FileOutputStream fileOutputStream = new FileOutputStream("downloaded_song.mp3")) {
+                    try (FileOutputStream fileOutputStream = new FileOutputStream(songName)) {
                         byte[] buffer = new byte[4096];
                         int bytesRead;
 
@@ -82,17 +85,17 @@ public class Api {
                     }
                 }
             } else {
-                System.out.println("Failed to download song. HTTP response code: " + connection.getResponseCode());
+                return new ResponseEntity<>("Error in downloading Song "+connection.getResponseCode(),HttpStatus.INTERNAL_SERVER_ERROR);
             }
 
             // Close the connection
             connection.disconnect();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            return new ResponseEntity<>("error in connection :'D",HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return "Hi";
+        return new ResponseEntity<>("Song downloaded Successfully :D",HttpStatus.OK);
     }
 }
 
