@@ -14,6 +14,8 @@ public class CorsConfigurations {
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/api/getSongsList").allowedOrigins("*");
+                registry.addMapping("/api/downloadSong/**").allowedOrigins("*");
+                registry.addMapping("/api/uploadSongs").allowedOrigins("*");
             }
         };
     }

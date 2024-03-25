@@ -19,7 +19,7 @@ public class Routers {
                         .and().method("POST")
                         .and().uri("http://localhost:8081")
                 )
-                .route("Auth",r->r.path("/api/downloadSong")
+                .route("Auth",r->r.path("/api/downloadSong/**")
                         .and().method("GET")
                         .and().uri("http://localhost:8081")
                 )
