@@ -15,6 +15,7 @@ public class Token {
     private Long id;
 
     @Column(name = "token")
+    @Lob
     private String token;
 
     @Column(name = "is_logged_out")
