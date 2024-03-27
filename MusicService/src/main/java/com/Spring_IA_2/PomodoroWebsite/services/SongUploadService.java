@@ -25,7 +25,7 @@ public class SongUploadService {
             ClassPathResource serviceAccount = new ClassPathResource("PomodoroWebsite.json");
             storage = StorageOptions.newBuilder().
                     setCredentials(GoogleCredentials.fromStream(serviceAccount.getInputStream())).
-                    setProjectId("pomodorowebsite-5a017").build().getService();
+                    setProjectId("pomodorowebsite-cab09.appspot.com").build().getService();
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -36,7 +36,7 @@ public class SongUploadService {
         String imageName = generateFileName(file.getOriginalFilename());
         Map<String, String> map = new HashMap<>();
         map.put("firebaseStorageDownloadTokens", imageName);
-        BlobId blobId = BlobId.of("pomodorowebsite-5a017.appspot.com", imageName);
+        BlobId blobId = BlobId.of("pomodorowebsite-cab09.appspot.com", imageName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
                 .setMetadata(map)
                 .setContentType(file.getContentType())
