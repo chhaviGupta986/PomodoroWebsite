@@ -2,10 +2,6 @@ package com.Authentication.Auth.Entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
-import com.Authentication.Auth.Entities.UserInfo;
-
 @Entity
 @Table(name = "tokens")
 public class Token {
@@ -14,8 +10,7 @@ public class Token {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "token")
-    @Lob
+    @Column(name = "token",columnDefinition = "TEXT")
     private String token;
 
     @Column(name = "is_logged_out")
