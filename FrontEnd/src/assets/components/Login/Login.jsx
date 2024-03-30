@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import { useEffect } from 'react'
+import { jwtDecode } from 'jwt-decode';
+import {Navigate,redirect,useNavigate} from 'react-router-dom'
 import './Login.css'
-function Login() {
+function Login(props) {
+
+  let navigate = useNavigate()
 
   async function handleSubmit(event){
 
@@ -19,14 +21,34 @@ function Login() {
         "email":email,
         "password":password
       })
-    })
-    console.log(res);
+    }).then(async(res)=>{return await res.json()})
+    if(res.status == "FORBIDDEN"){
+      alert("User Does not Exists or wrong password !!")
+    }else{
+      const decoded = jwtDecode(res.token)
+
+      let new_user = {}
+      new_user['token'] = res.token
+      new_user['email'] = decoded.email
+      new_user['mobile_number'] = decoded.mobileNumber
+      new_user['userName'] = decoded.userName
+      new_user['role'] = decoded.roles
+      new_user['iat'] = decoded.iat
+      new_user['expiration'] = decoded.exp
+
+      props.setUser(new_user)
+      return navigate("/")
+    }
+    
 
 
   }
 
   return (
     <>
+            {
+              props.user.token
+            }
             <form className="login-wrap" onSubmit={handleSubmit}>
                 <div className="login-html">
                   <input id="tab-1" type="radio" name="tab" className="sign-in" /><label htmlFor="tab-1" className="tab">Sign In</label>

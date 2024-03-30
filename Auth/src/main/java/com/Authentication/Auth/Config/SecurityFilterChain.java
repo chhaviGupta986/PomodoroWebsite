@@ -41,9 +41,10 @@ public class SecurityFilterChain {
     org.springframework.security.web.SecurityFilterChain securityFilterChains(HttpSecurity httpSecurity) throws Exception{
 
         return httpSecurity
-                .csrf(AbstractHttpConfigurer::disable).exceptionHandling()
-                .authenticationEntryPoint(CustomAccessEntryPoint)
-                .and()
+                .csrf(AbstractHttpConfigurer::disable) .exceptionHandling(exception ->
+                        exception.authenticationEntryPoint(CustomAccessEntryPoint)
+                )
+
                 .authorizeHttpRequests(
                         req -> req.requestMatchers("/login/**", "/register/**")
                                 .permitAll()

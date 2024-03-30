@@ -1,12 +1,13 @@
 import React from 'react'
 import {Navigate} from 'react-router-dom'
-const AuthenticatedRoute = (props,{children}) => {
-
+const AuthenticatedRoute = (props) => {
+  
   if( !(props.loggedIn.token) ){
+    
     return <Navigate to="/Login" replace/>
   }
   return (
-    children
+    props.children
   )
 }
 

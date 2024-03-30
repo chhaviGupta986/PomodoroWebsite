@@ -17,6 +17,8 @@ public class CorsConfig  {
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/login").allowedOrigins("*");
                 registry.addMapping("/register").allowedOrigins("*");
+                registry.addMapping("/api/**").allowedOrigins("*");
+
             }
         };
     }

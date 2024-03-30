@@ -22,12 +22,12 @@ function App() {
         
           <>
             
-            <Route element={<Login />} path="/Login" />
+            <Route element={<Login user={user} setUser={setUser}/>} path="/Login" />
             <Route element={<Register />} path="/Register" />
 
             <Route  path="/"
              element={<AuthenticatedRoute loggedIn={user}>
-                      <Home/>
+                      <Home user={user}/>
                       </AuthenticatedRoute>
                     }
             />

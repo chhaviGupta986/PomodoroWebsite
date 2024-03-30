@@ -19,31 +19,34 @@ public class JWTService {
      private final String SecretKey = "96E0AFB1EF27B847BD338CABF3E20CB6BD53F3CE2ED0F6AE6AC3AC8C5C16E711";
 
      public String extractEmail(String token){
-            return extractClaim(token,"email",Claims::getSubject);
+            return extractClaim(token,"email");
      }
 
      private boolean isTokenExpired(String token){
-         return extractExpiration(token).before(new Date());
+         System.out.println("Hi"+extractExpiration(token));
+         return extractExpiration(token) > (System.currentTimeMillis());
      }
      public boolean isValid(String token, UserInfo userInfo){
+         System.out.println(extractEmail(token));
+         System.out.println(!isTokenExpired(token));
          return userInfo.getEmail().equals(extractEmail(token)) && !isTokenExpired(token);
      }
 
-     private Date extractExpiration(String token){
+     private Long extractExpiration(String token){
 
-         return extractClaim(token,"expiration",Claims::getExpiration);
+         return extractClaim(token,"expiration");
      }
-     public <T> T extractClaim(String token,String claimName ,Function<Claims,T> resolver){
+     public <T> T extractClaim(String token,String claimName){
          Claims claims = ExtractAllClaims(token);
          if(claimName.equals("expiration")){
-             return (T) claims.get("expiration");
+             return (T) claims.get("exp");
          }
 
-         if (claimName.equals("email")){
+         else {
              return (T) claims.get("email");
          }
 
-         return resolver.apply(claims);
+
      }
      private Claims ExtractAllClaims(String token){
                 return Jwts.
