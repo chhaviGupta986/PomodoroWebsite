@@ -14,6 +14,7 @@ import {
 } from '@ant-design/icons';
 import UploadSongs from './assets/components/uploadSongs/uploadSongs';
 import ListSong from './assets/components/ListSong/ListSong';
+import EditSongs from './assets/components/EditSongs/EditSongs';
 
 
 const { Header, Sider, Content } = Layout;
@@ -40,20 +41,26 @@ function App() {
 
                 <Route  path="/"
                 element={<AuthenticatedRoute loggedIn={user}>
-                                <Website_Layout user={user} element={<Home/>}/>
+                                <Website_Layout user={user} element={Home}/>
                           </AuthenticatedRoute>
                         }/>
 
                 <Route  path="/UploadSong"
                 element={<AuthenticatedRoute loggedIn={user}>
-                                <Website_Layout user={user} element={<UploadSongs/>}/>
+                                <Website_Layout user={user} element={UploadSongs}/>
+                          </AuthenticatedRoute>
+                        }/>
+
+              <Route  path="/EditSong"
+                element={<AuthenticatedRoute loggedIn={user}>
+                                <Website_Layout user={user} element={EditSongs}/>
                           </AuthenticatedRoute>
                         }/>
 
 
                 <Route  path="/ListSongs"
                 element={<AuthenticatedRoute loggedIn={user}>
-                                <Website_Layout user={user} element={<ListSong/>}/>
+                                <Website_Layout user={user} element={ListSong}/>
                           </AuthenticatedRoute>
                         }/>
 

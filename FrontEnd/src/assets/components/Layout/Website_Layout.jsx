@@ -16,7 +16,6 @@ const Website_Layout = (props) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  console.log(props.user);
 
   function changeHeader(event){
       if(event.key == 1){
@@ -28,6 +27,9 @@ const Website_Layout = (props) => {
       }else if(event.key == 3){
 
         setHeader("Upload Songs")
+      }else if(event.key == 4){
+
+        setHeader("Edit Songs")
       }
   }
 
@@ -82,30 +84,33 @@ const Website_Layout = (props) => {
           items={props.user.role=="ADMIN;"?items_admin:items_user}
         />
       </Sider>
-      <Layout>
-      <Flex justify='content' align='center'>
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-          }}
-        >
-         
-            {header}
-          
-        </Header>
-        </Flex>
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            height:"100vh",
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          {props.element}
-        </Content>
+                  <Layout>
+                  
+                    <Header
+                      style={{
+                        padding: 0,
+                        background: colorBgContainer,
+                        width:"100%",
+                        color:'black'
+                      }}
+                    >
+                    <Flex justify='center' align='center'>
+                          {header}
+                    </Flex>
+                         
+                    </Header>
+                    
+                    <Content
+                      style={{
+                        margin: '24px 16px',
+                        padding: 24,
+                        height:'100vh',
+                        background: colorBgContainer,
+                        borderRadius: borderRadiusLG,
+                      }}
+                    >
+                      {<props.element user={props.user} header={header} setHeader={setHeader}/>}
+                    </Content>
       </Layout>
     </Layout>
   );

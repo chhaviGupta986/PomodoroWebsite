@@ -51,6 +51,15 @@ public class Api {
         return new ResponseEntity<>(new ReturnMessage("Uploaded Successfully"),HttpStatus.valueOf(200));
     }
 
+    @RequestMapping(path = "/editSongs",method = RequestMethod.POST)
+    public ResponseEntity<ReturnMessage>updateSongs(@ModelAttribute("MusicForm")MusicForm musicForm){
+        
+
+
+
+            return new ResponseEntity<>(new ReturnMessage("Song updated Successfully"),HttpStatus.OK);
+    }
+
     @RequestMapping(path = "/getSongsList",method = RequestMethod.GET)
     public ResponseEntity<ArrayList<Music>> getSongs() throws ExecutionException, InterruptedException {
        ArrayList<Music> music = songsCRUDService.getSongs();

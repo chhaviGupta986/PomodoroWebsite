@@ -19,6 +19,9 @@ public class SongsCRUDService {
 
         return music;
     }
+    public void updateSongs(){
+
+    }
 
     public ArrayList<Music> getSongs() throws ExecutionException, InterruptedException {
         Firestore db = FirestoreClient.getFirestore();
