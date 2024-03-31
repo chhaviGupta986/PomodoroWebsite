@@ -32,7 +32,7 @@ function Login(props) {
       new_user['email'] = decoded.email
       new_user['mobile_number'] = decoded.mobileNumber
       new_user['userName'] = decoded.userName
-      new_user['role'] = decoded.roles
+      new_user['role'] = decoded.Roles
       new_user['iat'] = decoded.iat
       new_user['expiration'] = decoded.exp
 

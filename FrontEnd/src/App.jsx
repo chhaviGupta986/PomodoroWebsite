@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './assets/components/Login/Login';
 import Register from './assets/components/Register/Register';
-import Home from './assets/components/Home/Home'; // Import the Home component
+import Website_Layout from './assets/components/Layout/Website_Layout'; // Import the Home component
 import AuthenticatedRoute from './assets/components/AuthenticatedRoutes/AuthenticatedRoute';
+import React, { useState } from 'react';
+import Home from './assets/components/Home/Home';
+import { Layout, Menu, Button, theme } from 'antd';
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UploadOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import UploadSongs from './assets/components/uploadSongs/uploadSongs';
+import ListSong from './assets/components/ListSong/ListSong';
 
+
+const { Header, Sider, Content } = Layout;
 function App() {
   const [user, setUser] = useState({
     token: null,
@@ -17,32 +29,40 @@ function App() {
   });
 
   return (
-    <Router>
-      <Routes>
-        
-          <>
+    
+          
+          <Routes>
             
-            <Route element={<Login user={user} setUser={setUser}/>} path="/Login" />
-            <Route element={<Register />} path="/Register" />
+              <>
+                
+                <Route element={<Login user={user} setUser={setUser}/>} path="/Login" />
+                <Route element={<Register />} path="/Register" />
 
-            <Route  path="/"
-             element={<AuthenticatedRoute loggedIn={user}>
-                      <Home user={user}/>
-                      </AuthenticatedRoute>
-                    }
-            />
+                <Route  path="/"
+                element={<AuthenticatedRoute loggedIn={user}>
+                                <Website_Layout user={user} element={<Home/>}/>
+                          </AuthenticatedRoute>
+                        }/>
 
-            <Route  path="/Profile"
-              element={<AuthenticatedRoute loggedIn={user}>
-                        <Home/>
-                        </AuthenticatedRoute>
-                      }
-            />
+                <Route  path="/UploadSong"
+                element={<AuthenticatedRoute loggedIn={user}>
+                                <Website_Layout user={user} element={<UploadSongs/>}/>
+                          </AuthenticatedRoute>
+                        }/>
 
-          </>
-        
-      </Routes>
-    </Router>
+
+                <Route  path="/ListSongs"
+                element={<AuthenticatedRoute loggedIn={user}>
+                                <Website_Layout user={user} element={<ListSong/>}/>
+                          </AuthenticatedRoute>
+                        }/>
+
+                   
+                
+              </>
+
+          </Routes>
+
   );
 }
 
