@@ -51,13 +51,19 @@ public class Api {
         return new ResponseEntity<>(new ReturnMessage("Uploaded Successfully"),HttpStatus.valueOf(200));
     }
 
-    @RequestMapping(path = "/editSongs",method = RequestMethod.POST)
-    public ResponseEntity<ReturnMessage>updateSongs(@ModelAttribute("MusicForm")MusicForm musicForm){
-        
+    @RequestMapping(path = "/editSongs/{id}",method = RequestMethod.POST)
+    public ResponseEntity<ReturnMessage>updateSongs(@PathVariable("id") String id, @ModelAttribute("MusicForm")MusicForm musicForm) throws IOException, ExecutionException, InterruptedException {
 
+        if(!musicForm.getFile().isEmpty()){
 
+            if(!musicForm.getFile().getContentType().equals("audio/mpeg")){
+                return new ResponseEntity<>(new ReturnMessage("Only mp3 files are allowed :'("),HttpStatus.valueOf(402));
+            }
+            String FileName = songUploadService.saveTestUpdate(musicForm.getFile());
+        }
 
-            return new ResponseEntity<>(new ReturnMessage("Song updated Successfully"),HttpStatus.OK);
+        return new ResponseEntity<>(new ReturnMessage("Edited Song Successfully"),HttpStatus.OK);
+
     }
 
     @RequestMapping(path = "/getSongsList",method = RequestMethod.GET)

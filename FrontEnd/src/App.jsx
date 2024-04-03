@@ -6,12 +6,6 @@ import AuthenticatedRoute from './assets/components/AuthenticatedRoutes/Authenti
 import React, { useState } from 'react';
 import Home from './assets/components/Home/Home';
 import { Layout, Menu, Button, theme } from 'antd';
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
 import UploadSongs from './assets/components/uploadSongs/uploadSongs';
 import ListSong from './assets/components/ListSong/ListSong';
 import EditSongs from './assets/components/EditSongs/EditSongs';
@@ -51,7 +45,7 @@ function App() {
                           </AuthenticatedRoute>
                         }/>
 
-              <Route  path="/EditSong"
+              <Route  path="/EditSong/:id"
                 element={<AuthenticatedRoute loggedIn={user}>
                                 <Website_Layout user={user} element={EditSongs}/>
                           </AuthenticatedRoute>
