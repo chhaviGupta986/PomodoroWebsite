@@ -6,8 +6,7 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -16,6 +15,34 @@ public class SongsCRUDService {
     public Music CreateSongs(Music music) throws ExecutionException, InterruptedException {
         Firestore db = FirestoreClient.getFirestore();
         ApiFuture<WriteResult>apiFuture = db.collection("Songs").document(music.getUrl()).set(music);
+
+        return music;
+    }
+
+    public Music updateSong(Music music) throws ExecutionException, InterruptedException {
+        Firestore db = FirestoreClient.getFirestore();
+        Map<String,Object>map = new HashMap<>();
+        System.out.println(music.getTitle());
+        if (!Objects.equals(music.getTitle(), "undefined")){
+            map.put("title",music.getTitle());
+        }
+
+
+        if (!Objects.equals(music.getArtist(), "undefined")){
+            map.put("artist",music.getArtist());
+        }
+
+        if (!Objects.equals(music.getCredits(), "undefined")){
+            map.put("credits",music.getCredits());
+        }
+
+        map.put("url",music.getUrl());
+
+        for (Map.Entry entry:map.entrySet()){
+            System.out.println(entry.getKey().toString()+entry.getValue().toString());
+        }
+
+        ApiFuture<WriteResult>apiFuture = db.collection("Songs").document(music.getUrl()).update(map);
 
         return music;
     }
