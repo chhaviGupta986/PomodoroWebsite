@@ -1,6 +1,9 @@
 import React from 'react'
 import '../Login/Login.css'
+import { jwtDecode } from 'jwt-decode'
+import {useNavigate} from 'react-router-dom'
 function Register(props) {
+	const navigate = useNavigate()
 	function submitHandler(event){
 		event.preventDefault()
 		const userName = event.target.user.value
@@ -17,8 +20,8 @@ function Register(props) {
 		  }
 		)
 
-		console.log(send)
-		async function sendData(){
+		console.log(props.user)
+		async function sendData(token){
 		
 		
 			const data = await fetch("http://localhost:8080/register",{
@@ -26,9 +29,23 @@ function Register(props) {
 				headers:{"Content-Type":"application/json"},
 				body:send
 			}).then(async(res)=>{return await res.json()})
-			console.log(data)
+
+			let decoded = jwtDecode(data.token)
+			let new_user = {}
+			new_user['token'] = data.token
+			new_user['email'] = Email
+			new_user['mobile_number'] = mobileNumber
+			new_user['userName'] = userName
+			new_user['role'] = decoded.Roles
+			new_user['iat'] = decoded.iat
+			new_user['expiration'] = decoded.exp
+	
+			props.setUser(new_user)
+			return navigate("/")
 		}
 		sendData()
+
+		
 	}
   return (
     <>

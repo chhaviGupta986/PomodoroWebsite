@@ -31,7 +31,7 @@ function App() {
               <>
                 
                 <Route element={<Login user={user} setUser={setUser}/>} path="/Login" />
-                <Route element={<Register />} path="/Register" />
+                <Route element={<Register user={user} setUser={setUser}/>} path="/Register" />
 
                 <Route  path="/"
                 element={<AuthenticatedRoute loggedIn={user}>
