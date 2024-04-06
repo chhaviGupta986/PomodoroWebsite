@@ -14,6 +14,7 @@ import {
 } from '@ant-design/icons';
 import UploadSongs from './assets/components/uploadSongs/uploadSongs';
 import ListSong from './assets/components/ListSong/ListSong';
+import StudyRoom from './assets/components/StudyRoom/StudyRoom';
 
 
 const { Header, Sider, Content } = Layout;
@@ -29,39 +30,45 @@ function App() {
   });
 
   return (
-    
-          
-          <Routes>
-            
-              <>
-                
-                <Route element={<Login user={user} setUser={setUser}/>} path="/Login" />
-                <Route element={<Register />} path="/Register" />
-
-                <Route  path="/"
-                element={<AuthenticatedRoute loggedIn={user}>
-                                <Website_Layout user={user} element={<Home/>}/>
-                          </AuthenticatedRoute>
-                        }/>
-
-                <Route  path="/UploadSong"
-                element={<AuthenticatedRoute loggedIn={user}>
-                                <Website_Layout user={user} element={<UploadSongs/>}/>
-                          </AuthenticatedRoute>
-                        }/>
 
 
-                <Route  path="/ListSongs"
-                element={<AuthenticatedRoute loggedIn={user}>
-                                <Website_Layout user={user} element={<ListSong/>}/>
-                          </AuthenticatedRoute>
-                        }/>
+    <Routes>
 
-                   
-                
-              </>
+      <>
 
-          </Routes>
+        <Route element={<Login user={user} setUser={setUser} />} path="/Login" />
+        <Route element={<Register />} path="/Register" />
+
+        <Route path="/"
+          element={<AuthenticatedRoute loggedIn={user}>
+            <Website_Layout user={user} element={<Home />} />
+          </AuthenticatedRoute>
+          } />
+
+        <Route path="/UploadSong"
+          element={<AuthenticatedRoute loggedIn={user}>
+            <Website_Layout user={user} element={<UploadSongs />} />
+          </AuthenticatedRoute>
+          } />
+
+
+        <Route path="/ListSongs"
+          element={<AuthenticatedRoute loggedIn={user}>
+            <Website_Layout user={user} element={<ListSong />} />
+          </AuthenticatedRoute>
+          } />
+
+        <Route path="/StudyRoom"
+          element={<AuthenticatedRoute loggedIn={user}>
+            <Website_Layout user={user} element={<StudyRoom />} />
+          </AuthenticatedRoute>
+          } />
+
+
+
+      </>
+
+    </Routes>
 
   );
 }

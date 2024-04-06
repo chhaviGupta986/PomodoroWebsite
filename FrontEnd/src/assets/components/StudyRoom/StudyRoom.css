@@ -1,0 +1,13 @@
+div.study-room-container {
+    margin-left: 220px;
+    /* padding-left: 200px; */
+    align-content: center;
+    /* Adjust the margin value as needed */
+}
+
+.timer{
+    font-size: 5rem; /* Adjust the size as needed */
+    padding: 20px;
+    margin-bottom: 50px;
+  }
+  
