@@ -6,15 +6,12 @@ import AuthenticatedRoute from './assets/components/AuthenticatedRoutes/Authenti
 import React, { useState } from 'react';
 import Home from './assets/components/Home/Home';
 import { Layout, Menu, Button, theme } from 'antd';
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
 import UploadSongs from './assets/components/uploadSongs/uploadSongs';
 import ListSong from './assets/components/ListSong/ListSong';
+
 import StudyRoom from './assets/components/StudyRoom/StudyRoom';
+import EditSongs from './assets/components/EditSongs/EditSongs';
+
 
 
 const { Header, Sider, Content } = Layout;
@@ -29,46 +26,49 @@ function App() {
     role: null
   });
 
-  return (
+  return (   
+          
+          <Routes>
+            
+              <>
+                
+                <Route element={<Login user={user} setUser={setUser}/>} path="/Login" />
+                <Route element={<Register user={user} setUser={setUser}/>} path="/Register" />
+
+                <Route  path="/"
+                element={<AuthenticatedRoute loggedIn={user}>
+                                <Website_Layout user={user} element={Home}/>
+                          </AuthenticatedRoute>
+                        }/>
+
+                <Route  path="/UploadSong"
+                element={<AuthenticatedRoute loggedIn={user}>
+                                <Website_Layout user={user} element={UploadSongs}/>
+                          </AuthenticatedRoute>
+                        }/>
+
+              <Route  path="/EditSong/:id"
+                element={<AuthenticatedRoute loggedIn={user}>
+                                <Website_Layout user={user} element={EditSongs}/>
+                          </AuthenticatedRoute>
+                        }/>
 
 
-    <Routes>
-
-      <>
-
-        <Route element={<Login user={user} setUser={setUser} />} path="/Login" />
-        <Route element={<Register />} path="/Register" />
-
-        <Route path="/"
-          element={<AuthenticatedRoute loggedIn={user}>
-            <Website_Layout user={user} element={<Home />} />
-          </AuthenticatedRoute>
-          } />
-
-        <Route path="/UploadSong"
-          element={<AuthenticatedRoute loggedIn={user}>
-            <Website_Layout user={user} element={<UploadSongs />} />
-          </AuthenticatedRoute>
-          } />
-
-
-        <Route path="/ListSongs"
-          element={<AuthenticatedRoute loggedIn={user}>
-            <Website_Layout user={user} element={<ListSong />} />
-          </AuthenticatedRoute>
-          } />
-
-        <Route path="/StudyRoom"
+                <Route  path="/ListSongs"
+                element={<AuthenticatedRoute loggedIn={user}>
+                                <Website_Layout user={user} element={ListSong}/>
+                          </AuthenticatedRoute>
+                        }/>
+                    <Route path="/StudyRoom"
           element={<AuthenticatedRoute loggedIn={user}>
             <Website_Layout user={user} element={<StudyRoom />} />
           </AuthenticatedRoute>
           } />
+                   
+                
+              </>
 
-
-
-      </>
-
-    </Routes>
+          </Routes>
 
   );
 }

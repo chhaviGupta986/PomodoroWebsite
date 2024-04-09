@@ -32,6 +32,21 @@ public class SongUploadService {
         }
     }
 
+    public String saveTestUpdate(MultipartFile file) throws IOException {
+
+        String imageName = file.getOriginalFilename();
+        Map<String, String> map = new HashMap<>();
+        map.put("firebaseStorageDownloadTokens", imageName);
+        BlobId blobId = BlobId.of("pomodorowebsite-cab09.appspot.com", imageName);
+        BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
+                .setMetadata(map)
+                .setContentType(file.getContentType())
+                .build();
+        storage.create(blobInfo, file.getInputStream());
+
+        return imageName;
+
+    }
     public String saveTest(MultipartFile file) throws IOException {
         String imageName = generateFileName(file.getOriginalFilename());
         Map<String, String> map = new HashMap<>();
