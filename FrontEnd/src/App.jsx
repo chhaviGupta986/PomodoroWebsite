@@ -61,7 +61,7 @@ function App() {
                         }/>
                     <Route path="/StudyRoom"
           element={<AuthenticatedRoute loggedIn={user}>
-            <Website_Layout user={user} element={<StudyRoom />} />
+            <Website_Layout user={user} element={StudyRoom} />
           </AuthenticatedRoute>
           } />
                    
