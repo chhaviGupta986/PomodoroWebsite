@@ -54,12 +54,6 @@ const Website_Layout = (props) => {
         icon: <UploadOutlined />,
         label: <Link to={'/UploadSong'}>Upload Songs</Link>,
         onClick: changeHeader
-      },
-      {
-        key: '4',
-        icon: <SmileOutlined />,
-        label: <Link to={'/StudyRoom'}>Study Room</Link>,
-        onClick: changeHeader
       }
     ]
 
@@ -68,13 +62,19 @@ const Website_Layout = (props) => {
       {
         key: '1',
         icon: <UserOutlined />,
-        label: 'nav 1',
+        label: 'User Stats',
         onClick: changeHeader
       },
       {
         key: '2',
         icon: <VideoCameraOutlined />,
         label: 'nav 2',
+        onClick: changeHeader
+      },
+      {
+        key: '3',
+        icon: <SmileOutlined />,
+        label: <Link to={'/StudyRoom'}>Study Room</Link>,
         onClick: changeHeader
       }
     ]
