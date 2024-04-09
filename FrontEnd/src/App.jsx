@@ -8,7 +8,10 @@ import Home from './assets/components/Home/Home';
 import { Layout, Menu, Button, theme } from 'antd';
 import UploadSongs from './assets/components/uploadSongs/uploadSongs';
 import ListSong from './assets/components/ListSong/ListSong';
+
+import StudyRoom from './assets/components/StudyRoom/StudyRoom';
 import EditSongs from './assets/components/EditSongs/EditSongs';
+
 
 
 const { Header, Sider, Content } = Layout;
@@ -23,8 +26,7 @@ function App() {
     role: null
   });
 
-  return (
-    
+  return (   
           
           <Routes>
             
@@ -57,7 +59,11 @@ function App() {
                                 <Website_Layout user={user} element={ListSong}/>
                           </AuthenticatedRoute>
                         }/>
-
+                    <Route path="/StudyRoom"
+          element={<AuthenticatedRoute loggedIn={user}>
+            <Website_Layout user={user} element={<StudyRoom />} />
+          </AuthenticatedRoute>
+          } />
                    
                 
               </>
