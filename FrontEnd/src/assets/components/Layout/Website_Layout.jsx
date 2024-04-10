@@ -27,7 +27,7 @@ const Website_Layout = (props) => {
       setHeader("List Songs")
     } else if (event.key == 3) {
 
-       setHeader("Upload Songs")
+       setHeader("Study Time")
       }else if(event.key == 4){
 
         setHeader("Edit Songs")
