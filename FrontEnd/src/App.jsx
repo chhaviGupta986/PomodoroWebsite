@@ -11,6 +11,7 @@ import ListSong from './assets/components/ListSong/ListSong';
 
 import StudyRoom from './assets/components/StudyRoom/StudyRoom';
 import EditSongs from './assets/components/EditSongs/EditSongs';
+import UserStats from './assets/components/UserStats/UserStats';
 
 
 
@@ -62,6 +63,11 @@ function App() {
                     <Route path="/StudyRoom"
           element={<AuthenticatedRoute loggedIn={user}>
             <Website_Layout user={user} element={StudyRoom} />
+          </AuthenticatedRoute>
+          } />
+                    <Route path="/UserStats"
+          element={<AuthenticatedRoute loggedIn={user}>
+            <Website_Layout user={user} element={UserStats} />
           </AuthenticatedRoute>
           } />
                    

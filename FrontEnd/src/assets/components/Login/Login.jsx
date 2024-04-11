@@ -56,7 +56,7 @@ function Login(props) {
                   <div className="login-form">
                     <div className="sign-in-htm">
                       <div className="group">
-                        <label htmlFor="user" className="label">Username</label>
+                        <label htmlFor="user" className="label">Email</label>
                         <input id="user" type="text" className="input"/>
                       </div>
                       <div className="group">

@@ -6,6 +6,7 @@ import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  BarChartOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Flex } from 'antd';
 import { useRef } from 'react';
@@ -21,7 +22,7 @@ const Website_Layout = (props) => {
   function changeHeader(event) {
     if (event.key == 1) {
 
-      setHeader("User Status")
+      setHeader("Home")
     } else if (event.key == 2) {
 
       setHeader("List Songs")
@@ -31,6 +32,14 @@ const Website_Layout = (props) => {
       }else if(event.key == 4){
 
         setHeader("Edit Songs")
+      }
+      else if(event.key == 5){
+
+        setHeader("User Stats")
+      }
+      else if(event.key == 6){
+
+        setHeader("Pomodoro Study Room")
       }
 
   }
@@ -54,12 +63,6 @@ const Website_Layout = (props) => {
         icon: <UploadOutlined />,
         label: <Link to={'/UploadSong'}>Upload Songs</Link>,
         onClick: changeHeader
-      },
-      {
-        key: '4',
-        icon: <SmileOutlined />,
-        label: <Link to={'/StudyRoom'}>Study Room</Link>,
-        onClick: changeHeader
       }
     ]
 
@@ -68,13 +71,19 @@ const Website_Layout = (props) => {
       {
         key: '1',
         icon: <UserOutlined />,
-        label: 'nav 1',
+        label: <Link to={'/'}>Home</Link>,
         onClick: changeHeader
       },
       {
-        key: '2',
-        icon: <VideoCameraOutlined />,
-        label: 'nav 2',
+        key: '5',
+        icon: <BarChartOutlined />,
+        label: <Link to={'/UserStats'}>User Stats</Link>,
+        onClick: changeHeader
+      },
+      {
+        key: '6',
+        icon: <SmileOutlined />,
+        label: <Link to={'/StudyRoom'}>Study Room</Link>,
         onClick: changeHeader
       }
     ]
