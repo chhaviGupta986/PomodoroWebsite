@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './StudyRoom.css'
-const StudyRoom = () => {
-  const [studyDuration, setStudyDuration] = useState(0.1); // Study duration in minutes
-  const [breakDuration, setBreakDuration] = useState(0.05); // Break duration in minutes
+const StudyRoom = (props) => {
+  const [studyDuration, setStudyDuration] = useState(props.timer.timer); // Study duration in minutes
+  const [breakDuration, setBreakDuration] = useState(props.timer.break_timer); // Break duration in minutes
   const [timeLeft, setTimeLeft] = useState(studyDuration * 60); // Initial time left in seconds
   const [timerRunning, setTimerRunning] = useState(false);
   const [isStudySession, setIsStudySession] = useState(true); // Initial session is study session

@@ -1,5 +1,5 @@
-import { EditOutlined, EllipsisOutlined, SettingOutlined,DeleteOutlined } from '@ant-design/icons';
-import React, { useState,useEffect } from 'react';
+import { EditOutlined,DeleteOutlined } from '@ant-design/icons';
+import  { useState,useEffect } from 'react';
 import { Avatar, Card, Flex } from 'antd';
 import './ListSong.css'
 import { Link } from 'react-router-dom';
@@ -38,23 +38,25 @@ const ListSong = (props) =>
       <Flex   wrap='wrap' gap={40} style={{position:'relative',left:"17%",width:"80%" }}>
         {  
               songs.map((element,index)=>(
-                
+
+                  props.user.role=="ADMIN;"?
                   <Card
                     style={{
                       width: 300,
                       marginTop: 16,
                       maxHeight:100,
-                                
+                        border:"1px solid black"
+
                     }}
-                    
+
                     bordered={true}
-                    
+
                     loading={loading}
-                   
-                    
+
+
                     actions={
                       [
-                     
+
                       <Link to={`/EditSong/${element.url}`}><EditOutlined key="edit" /></Link>,
                       <DeleteOutlined />
                     ]}
@@ -63,26 +65,49 @@ const ListSong = (props) =>
                     hoverable={true}
 
                   >
-                    
+
                       <Meta
                         avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=2" />}
                         title={`${element.title}`}
                         description={`${element.artist}`}
                       />
-                    
-                  </Card>
 
-                  
+                  </Card>:<Card
+                          style={{
+                              width: 300,
+                              marginTop: 16,
+                              maxHeight:100,
+                              border:"1px solid black"
+                          }}
+
+                          bordered={true}
+
+                          loading={loading}
+
+                          key={index}
+                          hoverable={true}
+
+                      >
+
+                          <Meta
+                              avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=2" />}
+                              title={`${element.title}`}
+                              description={`${element.artist}`}
+                          />
+
+                      </Card>
+
+
               ))
 
-              
-          
+
+
           }
 
 
-                 
 
-          
+
+
 
           
         </Flex>

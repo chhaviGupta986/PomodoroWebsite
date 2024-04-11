@@ -1,20 +1,22 @@
-import React, { useState, useMeasure } from 'react';
+import { useState } from 'react';
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
   SmileOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
-  BarChartOutlined
+  BarChartOutlined,
+  FieldTimeOutlined 
 } from '@ant-design/icons';
-import { Layout, Menu, Button, theme, Flex } from 'antd';
-import { useRef } from 'react';
+import { Layout, Menu, theme, Flex } from 'antd';
 import { Link } from 'react-router-dom';
 const { Header, Sider, Content } = Layout;
 const Website_Layout = (props) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed] = useState(false);
   const [header, setHeader] = useState("Home")
+  const [timer,setTimer] = useState({
+    timer:null,
+    break_timer:null
+  })
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -40,6 +42,9 @@ const Website_Layout = (props) => {
       else if(event.key == 6){
 
         setHeader("Pomodoro Study Room")
+      }
+      else if(event.key == 7){
+        setHeader("Set Timer")
       }
 
   }
@@ -74,6 +79,14 @@ const Website_Layout = (props) => {
         label: <Link to={'/'}>Home</Link>,
         onClick: changeHeader
       },
+
+        {
+            key: '2',
+            icon: <VideoCameraOutlined />,
+            label: <Link to={'/ListSongs'}>List Songs</Link>,
+            onClick: changeHeader
+        },
+
       {
         key: '5',
         icon: <BarChartOutlined />,
@@ -81,11 +94,19 @@ const Website_Layout = (props) => {
         onClick: changeHeader
       },
       {
+        key: '7',
+        icon: <FieldTimeOutlined />,
+        label: <Link to={'/SetTimer'}>SetTimer</Link>,
+        onClick: changeHeader
+      },
+      {
         key: '6',
         icon: <SmileOutlined />,
-        label: <Link to={'/StudyRoom'}>Study Room</Link>,
-        onClick: changeHeader
-      }
+        label:(timer.timer!=null?<Link to={'/StudyRoom'}>Study Room</Link>:("Study Room")),
+        onClick: changeHeader,
+        disabled: timer.timer==null?true:false
+      },
+     
     ]
 
 
@@ -126,7 +147,7 @@ const Website_Layout = (props) => {
                         borderRadius: borderRadiusLG,
                       }}
                     >
-                      {<props.element user={props.user} header={header} setHeader={setHeader}/>}
+                      {<props.element user={props.user} header={header} timer={timer} setTimer={setTimer} setHeader={setHeader}/>}
                     </Content>
       </Layout>
     </Layout>

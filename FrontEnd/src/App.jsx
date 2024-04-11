@@ -12,6 +12,7 @@ import ListSong from './assets/components/ListSong/ListSong';
 import StudyRoom from './assets/components/StudyRoom/StudyRoom';
 import EditSongs from './assets/components/EditSongs/EditSongs';
 import UserStats from './assets/components/UserStats/UserStats';
+import SelectSong from './assets/components/SelectSong/SelectSong';
 
 
 
@@ -68,6 +69,12 @@ function App() {
                     <Route path="/UserStats"
           element={<AuthenticatedRoute loggedIn={user}>
             <Website_Layout user={user} element={UserStats} />
+          </AuthenticatedRoute>
+          } />
+
+<Route path="/SetTimer"
+          element={<AuthenticatedRoute loggedIn={user}>
+            <Website_Layout user={user} element={SelectSong} />
           </AuthenticatedRoute>
           } />
                    
