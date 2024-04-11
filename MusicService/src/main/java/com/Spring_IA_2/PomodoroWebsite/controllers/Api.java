@@ -10,9 +10,11 @@ import java.util.concurrent.ExecutionException;
 
 import com.Spring_IA_2.PomodoroWebsite.classes.Music.Music;
 import com.Spring_IA_2.PomodoroWebsite.classes.Music.MusicForm;
+import com.Spring_IA_2.PomodoroWebsite.classes.Music.DeleteForm;
 import com.Spring_IA_2.PomodoroWebsite.classes.ReturnMessage;
 import com.Spring_IA_2.PomodoroWebsite.services.SongUploadService;
 import com.Spring_IA_2.PomodoroWebsite.services.SongsCRUDService;
+import com.Spring_IA_2.PomodoroWebsite.services.SongDeleteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +29,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class Api {
     SongUploadService songUploadService;
     SongsCRUDService songsCRUDService;
+    SongDeleteService songDeleteService;
 
     @Autowired
-    public Api(SongUploadService songUploadService, SongsCRUDService songsCRUDService){
+    public Api(SongUploadService songUploadService, SongsCRUDService songsCRUDService, SongDeleteService songDeleteService){
             this.songUploadService = songUploadService;
             this.songsCRUDService = songsCRUDService;
+            this.songDeleteService = songDeleteService;
     }
 
     @RequestMapping(path ="/uploadSongs",method =RequestMethod.POST )
@@ -67,17 +71,25 @@ public class Api {
         return new ResponseEntity<>(new ReturnMessage("Edited Song Successfully"),HttpStatus.OK);
 
     }
+    
+    @RequestMapping(path = "/deleteSongs", method = RequestMethod.POST)
+    public ResponseEntity<String> deleteSongs(@ModelAttribute("DeleteForm") DeleteForm file) throws IOException {
+        System.out.println("Hi");
+        System.out.println(file.getFilename());
+        songDeleteService.deleteTest(file.getFilename());
+        return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+    }
 
     @RequestMapping(path = "/getSongsList",method = RequestMethod.GET)
     public ResponseEntity<ArrayList<Music>> getSongs() throws ExecutionException, InterruptedException {
        ArrayList<Music> music = songsCRUDService.getSongs();
        return new ResponseEntity<>(music, HttpStatus.OK);
     }
-    @RequestMapping(path="/downloadSong/{songName}",method = RequestMethod.GET)
 
+    @RequestMapping(path="/downloadSong/{songName}",method = RequestMethod.GET)
     public ResponseEntity<ReturnMessage> downloadSong(@PathVariable("songName") String songName) throws IOException {
 
-        String songUrl = "https://firebasestorage.googleapis.com/v0/b/pomodorowebsite-5a017.appspot.com/o/"+songName+"?alt=media&token="+songName;
+        String songUrl = "https://firebasestorage.googleapis.com/v0/b/pomodorowebsite-cab09.appspot.com/o/"+songName+"?alt=media&token="+songName;
 
         try {
             URL url = new URL(songUrl);
@@ -116,5 +128,3 @@ public class Api {
         return new ResponseEntity<>(new ReturnMessage("Song downloaded successfully :D"),HttpStatus.OK);
     }
 }
-
-

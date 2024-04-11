@@ -3,6 +3,7 @@ package com.Spring_IA_2.PomodoroWebsite.services;
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
+import com.google.firebase.cloud.FirestoreClient;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
@@ -28,30 +29,48 @@ public class SongDeleteService {
     public void init(ApplicationReadyEvent event) {
         try {
             ClassPathResource serviceAccount = new ClassPathResource("PomodoroWebsite.json");
-            storage = StorageOptions.newBuilder().
-                    setCredentials(GoogleCredentials.fromStream(serviceAccount.getInputStream())).
-                    setProjectId("pomodorowebsite-5a017").build().getService();
-
+            storage = StorageOptions.newBuilder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount.getInputStream()))
+                    .setProjectId("pomodorowebsite-cab09.appspot.com")
+                    .build()
+                    .getService();
+            firestore = FirestoreClient.getFirestore();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }
+    }    
 
-    public void deleteTest(String filename) throws IOException {
-        // DocumentReference docRef = firestore.collection("Songs").document(music.getUrl());
-        // Map<String, Object> updates = new HashMap<>();
-        // updates.put(filename, FieldValue.delete());
-        
-        // // Update and delete the "filename" field in the document
-        // ApiFuture<WriteResult> writeResult = docRef.update(updates);
-        
-        // try {
-        //     // Wait for the operation to complete
-        //     System.out.println("Update time : " + writeResult.get());
-        // } catch (Exception ex) {
-        //     ex.printStackTrace();
-        // }
-    
+    public void deleteTest(String filename) {
+        try {
+            CollectionReference reference = firestore.collection("Songs");
+
+            // Retrieve all documents in the collection
+            ApiFuture<QuerySnapshot> future = reference.get();
+            QuerySnapshot querySnapshot = future.get();
+
+            // Iterate through each document
+            for (QueryDocumentSnapshot document : querySnapshot.getDocuments()) {
+                // Assuming your file name field is called "title"
+                String title = document.getString("title");
+
+                // Compare the filename with the filename to match
+                if (title != null && title.equals(filename)) {
+                    System.out.println(document.getString("url"));
+
+                    // Get the reference to the document to delete
+                    DocumentReference docRef = reference.document(document.getId());
+                    
+                    // Delete the document
+                    ApiFuture<WriteResult> deleteFuture = docRef.delete();
+                    
+                    // Wait for the delete operation to complete
+                    deleteFuture.get();
+                    
+                    System.out.println("Document with title " + title + " deleted successfully.");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    
 }
