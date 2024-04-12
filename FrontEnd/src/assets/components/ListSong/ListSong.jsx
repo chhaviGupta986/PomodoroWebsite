@@ -35,7 +35,7 @@ const ListSong = (props) =>
      
     
 
-      <Flex   wrap='wrap' gap={40} style={{position:'relative',left:"17%",width:"80%" }}>
+      <Flex   wrap='wrap' gap={40} style={{position:'relative',left:"20%",width:"80%" ,marginTop:'15vh',}}>
         {  
               songs.map((element,index)=>(
 
@@ -43,7 +43,7 @@ const ListSong = (props) =>
                   <Card
                     style={{
                       width: 300,
-                      marginTop: 16,
+                      marginTop: 19,
                       maxHeight:100,
                         border:"1px solid black"
 

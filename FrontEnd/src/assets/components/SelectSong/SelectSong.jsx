@@ -59,7 +59,7 @@ const SelectSong = (props) => {
         getSongs()
    },[])
     return (
-        <div style={{marginLeft:"4rem",height:"80vh",display:"flex",justifyContent:"center",alignItems:"center",margin:"auto"}}>
+        <div style={{marginLeft:"46vw",color:'white',height:'fit-content',boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px', display:"flex",justifyContent:"center",alignItems:"center",margin:"auto",marginTop:'20vh', backgroundColor:'#608089ee', width:'fit-content', padding:'7vh', borderRadius: '2vh'}}>
         <Form
             // {...formItemLayout}
             layout='vertical'

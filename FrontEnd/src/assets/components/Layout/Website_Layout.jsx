@@ -109,10 +109,17 @@ const Website_Layout = (props) => {
      
     ]
 
+  // Define the default background image and the image for the Study Room
+  const defaultBackgroundImage = "url('cozylofi.jpg')";
+  const studyRoomBackgroundImage = "url('study.gif')";
+  const timerBackgroundImage = "url('lofi.jpg')";
+
+  // Define the background image based on the current header value
+  const backgroundImage = header === "Set Timer" ? timerBackgroundImage : header === "Pomodoro Study Room" ? studyRoomBackgroundImage : defaultBackgroundImage;
 
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed} style={{ height: '100vh', position: 'fixed' }}>
+      <Sider trigger={null} collapsible collapsed={collapsed} style={{ height: '100vh', position: 'fixed', marginTop: '10vh' }}>
         <div className="demo-logo-vertical" />
         <Menu
           theme="dark"
@@ -126,10 +133,11 @@ const Website_Layout = (props) => {
                   
                     <Header
                       style={{
+                        height: '10vh',
+                        position: 'fixed',
                         padding: 0,
-                        background: colorBgContainer,
                         width:"100%",
-                        color:'black'
+                        color:'white'
                       }}
                     >
                     <Flex justify='center' align='center'>
@@ -140,10 +148,11 @@ const Website_Layout = (props) => {
                     
                     <Content
                       style={{
-                        margin: '24px 16px',
-                        padding: 24,
                         height:'100vh',
-                        background: colorBgContainer,
+                        background: '#603450',
+                        backgroundImage: backgroundImage,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover',
                         borderRadius: borderRadiusLG,
                       }}
                     >
