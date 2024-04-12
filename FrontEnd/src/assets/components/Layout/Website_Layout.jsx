@@ -17,6 +17,8 @@ const Website_Layout = (props) => {
     timer:null,
     break_timer:null
   })
+
+  const [song,setSong] = useState(null)
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -156,7 +158,7 @@ const Website_Layout = (props) => {
                         borderRadius: borderRadiusLG,
                       }}
                     >
-                      {<props.element user={props.user} header={header} timer={timer} setTimer={setTimer} setHeader={setHeader}/>}
+                      {<props.element user={props.user} song={song} setSong={setSong} header={header} timer={timer} setTimer={setTimer} setHeader={setHeader}/>}
                     </Content>
       </Layout>
     </Layout>

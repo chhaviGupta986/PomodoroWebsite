@@ -6,10 +6,9 @@ import { Button, Form, Input, Dropdown, Space } from 'antd';
 const SelectSong = (props) => {
     const [form] = Form.useForm();
     const [items,setItems]  =useState([])
-    const [song,setSong] = useState("")
     function handleClick(event){
 
-            setSong(items[event.key].label)
+            props.setSong({name:items[event.key].label,url:items[event.key].url})
     }
 
     const buttonItemLayout =
@@ -46,8 +45,8 @@ const SelectSong = (props) => {
             const element = result[index];
             let obj = {
                 key:index,
-                label:element.title
-                    
+                label:element.title,
+                url:element.url
                 
             }
             new_items.push(obj)

@@ -8,6 +8,11 @@ const StudyRoom = (props) => {
   const [isStudySession, setIsStudySession] = useState(true); // Initial session is study session
   // const [totalTimerRunning, setTotalTimerRunning]=useState(false);
   const [timeStudied, setTimeStudied]=useState(0)
+  const [playSong,toggleSong] = useState(null)
+
+  useEffect(()=>{
+    toggleSong(new Audio(`https://firebasestorage.googleapis.com/v0/b/pomodorowebsite-cab09.appspot.com/o/${props.song.url}?alt=media&token=${props.song.url}`))
+  },[])
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -42,10 +47,12 @@ const StudyRoom = (props) => {
 
   const startTimer = () => {
     setTimerRunning(true);
+    playSong.play()
   };
 
   const stopTimer = () => {
     setTimerRunning(false);
+    playSong.pause()
   };
   const playBeep = () => {
     const audio = new Audio('https://firebasestorage.googleapis.com/v0/b/pomodorowebsite-cab09.appspot.com/o/ring1.mp3?alt=media&token=490078a4-174f-4385-be97-57378360cf1b');
@@ -58,6 +65,7 @@ const StudyRoom = (props) => {
   };
 
   return (
+    
     <div className="study-room-container">
       <div className="study-room">
         <h1 className="title">Pomodoro Timer</h1>
