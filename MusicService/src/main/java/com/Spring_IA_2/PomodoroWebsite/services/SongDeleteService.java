@@ -45,32 +45,46 @@ public class SongDeleteService {
             CollectionReference reference = firestore.collection("Songs");
 
             // Retrieve all documents in the collection
-            ApiFuture<QuerySnapshot> future = reference.get();
-            QuerySnapshot querySnapshot = future.get();
+            ApiFuture<DocumentSnapshot> future = reference.document(filename).get();
+            DocumentSnapshot documentSnapshot  = future.get();
 
-            // Iterate through each document
-            for (QueryDocumentSnapshot document : querySnapshot.getDocuments()) {
-                // Assuming your file name field is called "title"
-                String title = document.getString("title");
+            if(documentSnapshot.exists()){
 
-                // Compare the filename with the filename to match
-                if (title != null && title.equals(filename)) {
-                    System.out.println(document.getString("url"));
+                DocumentReference documentReference = reference.document(filename);
+                documentReference.delete();
 
-                    // Get the reference to the document to delete
-                    DocumentReference docRef = reference.document(document.getId());
-                    
-                    // Delete the document
-                    ApiFuture<WriteResult> deleteFuture = docRef.delete();
-                    
-                    // Wait for the delete operation to complete
-                    deleteFuture.get();
-                    
-                    System.out.println("Document with title " + title + " deleted successfully.");
-                }
             }
-        } catch (Exception e) {
+        //     QuerySnapshot querySnapshot = future.get();
+
+        //     // Iterate through each document
+        //     for (QueryDocumentSnapshot document : querySnapshot.getDocuments()) {
+        //         // Assuming your file name field is called "url"
+        //         String url = document.getString("url");
+
+        //         // Compare the filename with the filename to match
+        //         if (url != null && url.equals(filename)) {
+        //             System.out.println(document.getString("url"));
+
+        //             // Get the reference to the document to delete
+        //             DocumentReference docRef = reference.document(document.getId());
+                    
+        //             // Delete the document
+        //             ApiFuture<WriteResult> deleteFuture = docRef.delete();
+                    
+        //             // Wait for the delete operation to complete
+        //             deleteFuture.get();
+                    
+        //             System.out.println("Document with url " + url + " deleted successfully.");
+        //         }
+        //     }
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
     }
+    
 }
