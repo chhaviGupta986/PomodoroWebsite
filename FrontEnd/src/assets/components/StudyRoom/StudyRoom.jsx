@@ -15,6 +15,19 @@ const StudyRoom = (props) => {
   },[])
 
   useEffect(() => {
+
+    async function updateUser(){
+      let res = await fetch(`http://localhost:8080/api/updateTimer/${props.timer.timer}`,{
+        method:"GET",
+        headers:{"Authorization":`Bearer ${props.user.token}`}
+      }
+      ).then(async(res)=>{return await res.json()})
+
+      console.log(res)
+    }
+
+
+
     const intervalId = setInterval(() => {
       if (timerRunning) {
         const nextIsStudySession = !isStudySession;
@@ -29,6 +42,11 @@ const StudyRoom = (props) => {
             const nextTimeLeft = nextIsStudySession ? studyDuration * 60 : breakDuration * 60;
             // Trigger beep sound
             playBeep();
+            if(!nextIsStudySession){
+              console.log("hi")
+                updateUser()
+            }
+
             return nextTimeLeft;
           }
           return prevTimeLeft - 1;
@@ -68,7 +86,7 @@ const StudyRoom = (props) => {
     
     <div className="study-room-container">
       <div className="study-room">
-        <h1 className="title">Pomodoro Timer</h1>
+        <h1 className="title">{isStudySession? "Pomodoro Timer":"Break Timer"}</h1>
         <div className="timer">{formatTime(timeLeft)}</div>
         <div className="buttons">
           {timerRunning ? (
