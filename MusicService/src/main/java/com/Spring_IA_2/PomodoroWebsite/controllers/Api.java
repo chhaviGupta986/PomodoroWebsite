@@ -72,11 +72,10 @@ public class Api {
 
     }
     
-    @RequestMapping(path = "/deleteSongs", method = RequestMethod.POST)
-    public ResponseEntity<String> deleteSongs(@ModelAttribute("DeleteForm") DeleteForm file) throws IOException {
+    @RequestMapping(path = "/deleteSongs/{id}", method = RequestMethod.POST)
+    public ResponseEntity<String> deleteSongs(@PathVariable("id") String id) throws IOException {
         System.out.println("Hi");
-        System.out.println(file.getFilename());
-        songDeleteService.deleteTest(file.getFilename());
+        songDeleteService.deleteTest(id);
         return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
     }
 

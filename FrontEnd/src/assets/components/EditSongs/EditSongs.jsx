@@ -71,21 +71,13 @@ function EditSongs(props){
 
     return(
     
-    <Flex justify='center' align='center' style={{height:"70vh",left:50,position:'relative',overflow:'hidden'}}>
+        <Flex justify='center' align='center' style={{boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',overflow:'hidden',background:'#608089ee', width:'fit-content', padding:'2rem', borderRadius: '5px', margin:'auto', marginTop:'20vh', marginLeft: '33rem'}}>
         <Form
             name="basic"
-            labelCol={{
-            span: 8,
-            }}
-            wrapperCol={{
-            span: 16,
-            }}
-            style={{
-            maxWidth: 600,
-            }}
+            layout='vertical'
             initialValues={{
             remember: true,
-            }}
+            }} 
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
@@ -102,6 +94,8 @@ function EditSongs(props){
             <Input />
             </Form.Item>
 
+
+            <div style = {{display:'flex', gap:'5px'}}>
             <Form.Item
             label="Enter artist"
             name="artist"
@@ -126,7 +120,7 @@ function EditSongs(props){
             >
             <Input/>
             </Form.Item>
-
+            </div>
             <Form.Item
             label="Upload file"
             name="file"
@@ -136,7 +130,7 @@ function EditSongs(props){
                 },
             ]}
             >
-            <Upload>
+            <Upload styles={{width:'100%'}}>
                 <Button icon={<UploadOutlined />}>Click to Upload</Button>
             </Upload>
             </Form.Item>
