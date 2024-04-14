@@ -90,12 +90,6 @@ const Website_Layout = (props) => {
         },
 
       {
-        key: '5',
-        icon: <BarChartOutlined />,
-        label: <Link to={'/UserStats'}>User Stats</Link>,
-        onClick: changeHeader
-      },
-      {
         key: '7',
         icon: <FieldTimeOutlined />,
         label: <Link to={'/SetTimer'}>SetTimer</Link>,
