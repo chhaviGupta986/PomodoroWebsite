@@ -10,7 +10,6 @@ import java.util.concurrent.ExecutionException;
 
 import com.Spring_IA_2.PomodoroWebsite.classes.Music.Music;
 import com.Spring_IA_2.PomodoroWebsite.classes.Music.MusicForm;
-import com.Spring_IA_2.PomodoroWebsite.classes.Music.DeleteForm;
 import com.Spring_IA_2.PomodoroWebsite.classes.ReturnMessage;
 import com.Spring_IA_2.PomodoroWebsite.services.SongUploadService;
 import com.Spring_IA_2.PomodoroWebsite.services.SongsCRUDService;
@@ -72,9 +71,8 @@ public class Api {
 
     }
     
-    @RequestMapping(path = "/deleteSongs/{id}", method = RequestMethod.POST)
+    @RequestMapping(path = "/deleteSongs/{id}", method = RequestMethod.GET)
     public ResponseEntity<String> deleteSongs(@PathVariable("id") String id) throws IOException {
-        System.out.println("Hi");
         songDeleteService.deleteTest(id);
         return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
     }

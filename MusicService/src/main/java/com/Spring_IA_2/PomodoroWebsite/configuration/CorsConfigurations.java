@@ -16,6 +16,7 @@ public class CorsConfigurations {
                 registry.addMapping("/api/getSongsList").allowedOrigins("*");
                 registry.addMapping("/api/downloadSong/**").allowedOrigins("*");
                 registry.addMapping("/api/uploadSongs").allowedOrigins("*");
+                registry.addMapping("/api/deleteSongs/**").allowedOrigins("*");
             }
         };
     }
