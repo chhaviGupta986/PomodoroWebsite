@@ -1,12 +1,7 @@
 # ⏰ Pomodoro Productivity Platform
 
-**A productivity-boosting study platform built on the Pomodoro Technique to help users stay focused, organized, and motivated during study sessions. It integrates background music for a more immersive experience.**
-
----
-
-## ✨ What is this website about?
-
 The Pomodoro Productivity Platform leverages the Pomodoro Technique to boost productivity and enhance focus. The Pomodoro Technique involves breaking work into 25-minute intervals, followed by short breaks, to maintain concentration and efficiency. Our platform takes it a step further by integrating background music, customizable timers, and a cozy, animated UI to create a fun and engaging study environment.
+
 
 https://github.com/user-attachments/assets/3f735b26-0546-4145-a557-a24ac79d23a3
 
