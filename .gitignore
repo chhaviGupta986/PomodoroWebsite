@@ -9,3 +9,4 @@
 registeration_creds.txt
 package-lock.json
 .vscode/
+*.bat
